@@ -1,18 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
-    <TextView
+
+    <!-- 로고 이미지 -->
+
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="186dp"
+        android:layout_height="75dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/fairylogo" />
+
+    <LinearLayout
+        android:id="@+id/idLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logoImageView"
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/id" />
+
+        <EditText
+            android:id="@+id/idEditText"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="65dp"
+            android:background="@drawable/round_edittext"
+            android:padding="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pwLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/idLayout"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/pw"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/pwEditText"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="65dp"
+            android:background="@drawable/round_edittext"
+            android:padding="8dp" />
+
+    </LinearLayout>
+    <!-- 로그인 버튼 -->
+
+    <!-- 로그인 정보 기억하기 토글 -->
+    <!-- 회원가입 버튼 -->
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="67dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="295dp"
+        android:layout_marginTop="305dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="#EBEBEB"
+        android:text="로그인"
+        android:textColor="#000000" />
+
+    <CheckBox
+        android:id="@+id/rememberCheckbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_below="@id/pwLayout"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="146dp"
+        android:layout_marginRight="8dp"
+        android:buttonTint="@android:color/black"
+        android:text="로그인 정보 기억하기"
+        android:textColor="@color/black" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/signupTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rememberCheckbox"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="160dp"
+        android:text="아직 회원이 아니신가요?"
+        android:textColor="@android:color/darker_gray" />
+
+    <Button
+        android:id="@+id/signupButton"
+        android:layout_width="69dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/rememberCheckbox"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/signupTextView"
+        android:background="@android:color/transparent"
+        android:text="회원가입"
+        android:textColor="@android:color/darker_gray" />
+
+
+</RelativeLayout>
