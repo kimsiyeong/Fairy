@@ -2,14 +2,15 @@ package com.cookandroid.fairy;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
-
+import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText nameSEditText, passwordSEditText, confirmSPasswordEditText;
     private Button signupSButton;
     private Spinner yearSpinner, monthSpinner, daySpinner;
-
+    private TextView passwordMismatchTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,7 @@ public class SignupActivity extends AppCompatActivity {
         yearSpinner = findViewById(R.id.yearSpinner);
         monthSpinner = findViewById(R.id.monthSpinner);
         daySpinner = findViewById(R.id.daySpinner);
-
+        passwordMismatchTextView = findViewById(R.id.passwordMismatchTextView);
         // 년도 스피너 설정 (2023부터 2000까지)
         List<String> years = new ArrayList<>();
         for (int i = 2023; i >= 2000; i--) {
@@ -64,6 +65,28 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // 아무 것도 선택되지 않았을 때의 처리
+            }
+        });
+
+        confirmSPasswordEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // '비밀번호'와 '비밀번호 확인'이 일치하는지 확인
+                if (!passwordSEditText.getText().toString().equals(confirmSPasswordEditText.getText().toString())) {
+                    passwordMismatchTextView.setVisibility(View.VISIBLE);
+                } else {
+                    passwordMismatchTextView.setVisibility(View.GONE);
+                }
             }
         });
     }
