@@ -1,37 +1,49 @@
 package com.cookandroid.fairy;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class SignupActivity extends AppCompatActivity {
-    private EditText nameSEditText, passwordSEditText, confirmSPasswordEditText;
+    private EditText nameSEditText, idSEditText, passwordSEditText, confirmSPasswordEditText;
     private Button signupSButton;
     private Spinner yearSpinner, monthSpinner, daySpinner;
-    private TextView passwordMismatchTextView;
+    private int selectedYear, selectedMonth, selectedDay;
+
+    public SQLiteDatabase getWritableDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
         nameSEditText = findViewById(R.id.nameSEditText);
+        idSEditText = findViewById(R.id.idSEditText);
         passwordSEditText = findViewById(R.id.passwordSEditText);
         confirmSPasswordEditText = findViewById(R.id.confirmSPasswordEditText);
         signupSButton = findViewById(R.id.signupSButton);
         yearSpinner = findViewById(R.id.yearSpinner);
         monthSpinner = findViewById(R.id.monthSpinner);
         daySpinner = findViewById(R.id.daySpinner);
-        passwordMismatchTextView = findViewById(R.id.passwordMismatchTextView);
+
+        // 선택받은 날짜 받는 것
+
+
         // 년도 스피너 설정 (2023부터 2000까지)
         List<String> years = new ArrayList<>();
         for (int i = 2023; i >= 2000; i--) {
@@ -57,7 +69,7 @@ public class SignupActivity extends AppCompatActivity {
         monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                int selectedMonth = Integer.parseInt(monthSpinner.getSelectedItem().toString());
+                selectedMonth = Integer.parseInt(monthSpinner.getSelectedItem().toString());
                 int maxDays = getMaxDays(selectedMonth);
                 updateDaySpinner(maxDays);
             }
@@ -68,24 +80,48 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        confirmSPasswordEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
-
-            }
+        signupSButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            public void onClick(View view) {
+                //db 연결
+                try {
+                    Toast.makeText(getApplicationContext(), "객체 연결전", Toast.LENGTH_SHORT).show();
+                    DBHelper dbHelper = new DBHelper(getApplicationContext()); // 이 액티비티에서 객체 초기화
 
-            }
+                    SQLiteDatabase sqlDB;
+                    sqlDB = dbHelper.getWritableDatabase( );
+                    Toast.makeText(getApplicationContext(), "db 연결", Toast.LENGTH_SHORT).show();
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-                // '비밀번호'와 '비밀번호 확인'이 일치하는지 확인
-                if (!passwordSEditText.getText().toString().equals(confirmSPasswordEditText.getText().toString())) {
-                    passwordMismatchTextView.setVisibility(View.VISIBLE);
-                } else {
-                    passwordMismatchTextView.setVisibility(View.GONE);
+                    String name = nameSEditText.getText().toString(); // EditText에서 이름 가져오기
+                    String id = idSEditText.getText().toString();
+                    String password = passwordSEditText.getText().toString(); // EditText에서 비밀번호 가져오기
+
+                    // selected 된 생년월일 가지고 오는 코드
+                    selectedYear = Integer.parseInt(yearSpinner.getSelectedItem().toString());
+                    selectedDay = Integer.parseInt(daySpinner.getSelectedItem().toString());
+
+                    String birth = selectedYear + "-" + selectedMonth + "-" + selectedDay; // 생년월일 문자열로 변환
+
+
+                    sqlDB.execSQL("INSERT INTO User (name, id, pw, birth, intro) VALUES (?, ?, ?, ?, ?)", new String[]{ name, id, password, birth, "안녕"});
+
+
+                    Toast.makeText(getApplicationContext(), "sql문 실행", Toast.LENGTH_SHORT).show();
+
+                    sqlDB.close( ); // 열려있는 DB개체 닫기
+
+                    Intent returnIntent = new Intent();
+                    setResult(Activity.RESULT_OK, returnIntent);
+                    finish();
+
+                } catch (SQLException e) {
+                    Toast.makeText(getApplicationContext(), "sql문 오류", Toast.LENGTH_SHORT).show();
+                    Log.e("SQL_ERROR", "SQL Exception: " + e.getMessage());
+                }
+                catch(Exception e) {
+                    Toast.makeText(getApplicationContext(), "db 연결오류", Toast.LENGTH_SHORT).show();
+                    Log.e("ERROR", "Exception: " + e.getMessage());
                 }
             }
         });
