@@ -60,20 +60,20 @@
 
         <ImageView
             android:id="@+id/introdutionImageView"
-            android:layout_width="match_parent"
-            android:layout_height="136dp"
+            android:layout_width="403dp"
+            android:layout_height="131dp"
             android:layout_marginTop="270dp"
-            android:src="@drawable/introdution" />
+            android:src="@drawable/introdution"
+            android:layout_marginLeft="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/nameTextView"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="70dp"
             android:layout_marginTop="180dp"
-            android:text="저는 하루의 일상을 기억하는 페어리입니다! \n
-매일 다른 옷을 입으며 일상을 기록하고 있어요 :-)"
-            android:textSize="15sp" />
+            android:text="저는 하루의 일상을 기억하는 페어리입니다! \n매일 다른 옷을 입으며 일상을 기록하고 있어요 :-)"
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
