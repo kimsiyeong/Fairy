@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="457dp"
+        android:layout_height="430dp"
         android:layout_marginStart="-6dp"
         android:layout_marginLeft="-6dp"
         android:background="#81AFA1">
@@ -16,7 +16,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="70dp"
             android:src="@drawable/profile" />
 
         <TextView
@@ -61,25 +61,27 @@
         <ImageView
             android:id="@+id/introdutionImageView"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:layout_marginTop="260dp"
+            android:layout_height="136dp"
+            android:layout_marginTop="270dp"
             android:src="@drawable/introdution" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/nameTextView"
-            android:layout_marginStart="85dp"
-            android:layout_marginTop="192dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="180dp"
             android:text="저는 하루의 일상을 기억하는 페어리입니다! \n
 매일 다른 옷을 입으며 일상을 기록하고 있어요 :-)"
             android:textSize="15sp" />
 
     </RelativeLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="490dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="460dp"
         android:text="테마 변경"
         android:textSize="15sp"
         android:textColor="#292929"
@@ -90,8 +92,8 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="530dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="500dp"
             android:src="@drawable/rubybutton"/>
 
         <ImageView
@@ -99,8 +101,8 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="220dp"
-            android:layout_marginTop="530dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="500dp"
             android:src="@drawable/bellbutton"/>
 
         <ImageView
@@ -108,8 +110,8 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="650dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="620dp"
             android:src="@drawable/tinkerbellbutton"/>
 
     <ImageView
@@ -117,8 +119,8 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="650dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="620dp"
         android:src="@drawable/elfbutton" />
 
 
