@@ -130,7 +130,7 @@ public class SignupActivity extends AppCompatActivity {
     // 해당 월의 최대 일 수를 반환하는 메서드
     private int getMaxDays(int month) {
         if (month == 2) {
-            // 2월은 28일로 처리 (편의상 윤년은 고려하지 않음)
+            // 2월은 28일로 처리
             return 28;
         } else if (month == 4 || month == 6 || month == 9 || month == 11) {
             // 4, 6, 9, 11월은 30일
