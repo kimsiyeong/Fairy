@@ -1,6 +1,7 @@
 package com.cookandroid.fairy;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.view.View;
@@ -11,13 +12,9 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "fairyDB.db";
     private static final int DATABASE_VERSION = 1;
 
-//    public DBHelper(@Nullable View.OnClickListener context) {
-//        super((Context) context, DATABASE_NAME, null, DATABASE_VERSION);
-//    }
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
 
 
     @Override
@@ -34,6 +31,17 @@ public class DBHelper extends SQLiteOpenHelper {
         // intro 는 사용자의 한줄 소개
 
     }
+
+    public boolean checkUser(String id, String pw) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM User WHERE id = ? AND pw = ?", new String[]{id, pw});
+        boolean exists = (cursor.getCount() > 0);
+        cursor.close();
+        db.close();
+        return exists;
+    }
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

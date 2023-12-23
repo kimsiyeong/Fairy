@@ -33,8 +33,19 @@ public class MainActivity extends AppCompatActivity {
                 String id = idEditText.getText().toString();
                 String pw = pwEditText.getText().toString();
 
+                DBHelper dbHelper = new DBHelper(MainActivity.this);
+                boolean userExists = dbHelper.checkUser(id, pw);
+
+                if (userExists) {
+                    Toast.makeText(MainActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
+                    // 로그인 성공 시 다음 화면으로 이동하는 코드를 추가할 수 있습니다.
+                } else {
+                    Toast.makeText(MainActivity.this, "아이디 또는 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                }
+
                 // 로그인 동작
-                Toast.makeText(MainActivity.this, "ID: " + id + "\nPW: " + pw, Toast.LENGTH_SHORT).show(); // 입력 확인 테스트
+                //Toast.makeText(MainActivity.this, "ID: " + id + "\nPW: " + pw, Toast.LENGTH_SHORT).show(); // 입력 확인 테스트
+
             }
         });
 
