@@ -124,16 +124,17 @@
 
             <TextView
                 android:id="@+id/dailyContent"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:visibility="gone"
+                android:textSize="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/photoView" />
+
 
             <Button
                 android:id="@+id/saveBtn"
@@ -155,10 +156,10 @@
                 android:id="@+id/editAndRemoveGrid"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone"
+                android:layout_marginBottom="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contextEditText">
+                app:layout_constraintTop_toBottomOf="@+id/dailyContent">
 
                 <Button
                     android:id="@+id/editBtn"

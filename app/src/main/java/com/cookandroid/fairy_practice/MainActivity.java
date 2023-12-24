@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -82,6 +83,21 @@ public class MainActivity extends AppCompatActivity {
         editBtn = findViewById(R.id.editBtn);
         delBtn = findViewById(R.id.delBtn);
 
+        //왼쪽 상단 myPage에 갈 수 있는 버튼
+        myPageBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+            }
+        });
+        //오른쪽 상단 알림창을 열 수 있는 버튼
+        notiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 버튼이 클릭되었을 때 수행할 동작을 여기에 추가
+            }
+        });
+
+        //calender에서 날짜를 선택했을 때 메모공간 view
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 todayDate.setVisibility(View.VISIBLE);
@@ -93,14 +109,14 @@ public class MainActivity extends AppCompatActivity {
                 checkDay(year, month, dayOfMonth);
             }
         });
-
+        //saveBtn을 눌렀을 때 저장 및 버튼 종류가 변경
         saveBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 saveDiary(readDay);
                 str = contextEditText.getText().toString();
                 dailyContent.setText(str);
+                dailyContent.setPaintFlags(dailyContent.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
                 saveBtn.setVisibility(View.INVISIBLE);
-                editAndRemoveGrid.setVisibility(View.VISIBLE);
                 editBtn.setVisibility(View.VISIBLE);
                 delBtn.setVisibility(View.VISIBLE);
                 contextEditText.setVisibility(View.INVISIBLE);
@@ -109,20 +125,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("SaveBtnClick", "dailyContent visibility: " + dailyContent.getVisibility());
             }
         });
-
-        myPageBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-
-            }
-        });
-        notiBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 버튼이 클릭되었을 때 수행할 동작을 여기에 추가
-            }
-        });
     }
-public void checkDay(int cYear,int cMonth,int cDay)
+    public void checkDay(int cYear,int cMonth,int cDay)
         {
         readDay=""+cYear+"-"+(cMonth+1)+""+"-"+cDay+".txt";
         FileInputStream fis;
@@ -158,24 +162,24 @@ public void onClick(View view){
         }
         });
         delBtn.setOnClickListener(new View.OnClickListener(){
-@Override
-public void onClick(View view){
-        dailyContent.setVisibility(View.INVISIBLE);
-        contextEditText.setText("");
-        contextEditText.setVisibility(View.VISIBLE);
-        saveBtn.setVisibility(View.VISIBLE);
-        editBtn.setVisibility(View.INVISIBLE);
-        delBtn.setVisibility(View.INVISIBLE);
-        removeDiary(readDay);
-        }
+            @Override
+            public void onClick(View view){
+            dailyContent.setVisibility(View.INVISIBLE);
+            contextEditText.setText("");
+            contextEditText.setVisibility(View.VISIBLE);
+            saveBtn.setVisibility(View.VISIBLE);
+            editBtn.setVisibility(View.INVISIBLE);
+            delBtn.setVisibility(View.INVISIBLE);
+            removeDiary(readDay);
+            }
         });
         if(dailyContent.getText()==null){
-        dailyContent.setVisibility(View.INVISIBLE);
-        saveBtn.setVisibility(View.VISIBLE);
-        editBtn.setVisibility(View.INVISIBLE);
-        delBtn.setVisibility(View.INVISIBLE);
-        contextEditText.setVisibility(View.VISIBLE);
-        }
+            dailyContent.setVisibility(View.INVISIBLE);
+            saveBtn.setVisibility(View.VISIBLE);
+            editBtn.setVisibility(View.INVISIBLE);
+            delBtn.setVisibility(View.INVISIBLE);
+            contextEditText.setVisibility(View.VISIBLE);
+            }
         }
         catch(Exception e)
         {
@@ -200,9 +204,8 @@ public void removeDiary(String readDay)
         e.printStackTrace();
         }
         }
-
-@SuppressLint("WrongConstant")
-public void saveDiary(String readDay)
+        @SuppressLint("WrongConstant")
+        public void saveDiary(String readDay)
         {
         FileOutputStream fos;
         try
@@ -217,4 +220,4 @@ public void saveDiary(String readDay)
         e.printStackTrace();
         }
         }
-        }
+}
