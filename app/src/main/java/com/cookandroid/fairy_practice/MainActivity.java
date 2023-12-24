@@ -11,10 +11,15 @@ import androidx.core.content.ContextCompat;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -115,6 +120,27 @@ public class MainActivity extends AppCompatActivity {
                 saveDiary(readDay);
                 str = contextEditText.getText().toString();
                 dailyContent.setText(str);
+                // SpannableString을 생성
+                SpannableString spannableString = new SpannableString(str);
+
+//                // 밑줄 스타일을 적용할 부분의 시작과 끝 인덱스를 지정
+//                int start = 0;
+//                int end = str.length();
+
+                // R.color.my_color를 통해 색상 리소스에 접근
+                int colorRes = R.color.fairy;
+
+                // 리소스에서 실제 색상 값으로 변환
+                int fairyColor = ContextCompat.getColor(MainActivity.this, colorRes);
+
+                // 밑줄과 색상을 설정하는 Span 생성
+                ForegroundColorSpan colorSpan = new ForegroundColorSpan(fairyColor); // 색상을 원하는 색상으로 변경
+
+                // SpannableString에 Span 적용
+                //spannableString.setSpan(colorSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                // TextView에 설정
+                dailyContent.setText(spannableString);
                 dailyContent.setPaintFlags(dailyContent.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
                 saveBtn.setVisibility(View.INVISIBLE);
                 editBtn.setVisibility(View.VISIBLE);
