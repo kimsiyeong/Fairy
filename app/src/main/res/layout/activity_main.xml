@@ -7,137 +7,185 @@
     android:orientation="vertical"
     android:background="#F3F7F6">
 
-    <GridLayout
-        android:id="@+id/headGrid"
+    <ScrollView
+        android:id="@+id/pageScroll"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:columnCount="2"
-        android:rowCount="2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-        <Button
-            android:id="@+id/myPageBtn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="start"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="30dp"
-            android:contentDescription="Positive to My Page"
-            />
-<Button
-    android:id="@+id/notiBtn"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
-    android:layout_gravity="end"
-    android:layout_marginTop="25dp"
-    android:layout_marginRight="30dp"
-    android:text="❁"
-    android:onClick="onButtonClick"
-   />
-
-    </GridLayout>
-
-    <LinearLayout
-        android:id="@+id/datePickerContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone"
-         app:layout_constraintTop_toBottomOf="@+id/headGrid">
+        tools:ignore="MissingConstraints">
 
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="300dp"
-        android:layout_height="120dp"
-        android:datePickerMode="spinner"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="120dp"
-        tools:ignore="MissingConstraints" />
-</LinearLayout>
-
-
-    <CalendarView
-            android:id="@+id/calendarView"
+        <LinearLayout
+            android:id="@+id/allPage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/headGrid"
-            tools:layout_editor_absoluteX="-16dp" />
+            android:orientation="vertical">
 
+            <GridLayout
+                android:id="@+id/headGrid"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:columnCount="2"
+                android:rowCount="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/todayDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+                <Button
+                    android:id="@+id/myPageBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="25dp"
+                    android:contentDescription="Positive to My Page" />
 
-    <EditText
-        android:id="@+id/contextEditText"
-        android:layout_width="0dp"
-        android:layout_height="116dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:ems="10"
-        android:hint="Please write what kind of fairy you were today!"
-        android:inputType="textMultiLine"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/todayDate" />
+                <Button
+                    android:id="@+id/notiBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="30dp"
+                    android:onClick="onButtonClick"
+                    android:text="N" />
+            </GridLayout>
 
-    <Button
-        android:id="@+id/save_Btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="20dp"
-        android:text="저장"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contextEditText" />
+            <LinearLayout
+                android:id="@+id/calenderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@+id/headGrid">
 
+                <DatePicker
+                    android:id="@+id/datePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:datePickerMode="spinner"
+                    android:visibility="gone"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="50dp"
+                    tools:layout_editor_absoluteY="120dp" />
 
-    <Button
-        android:id="@+id/cha_Btn"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="수정"
-        android:visibility="invisible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/save_Btn"
-        app:layout_constraintEnd_toStartOf="@+id/del_Btn"
-        app:layout_constraintStart_toStartOf="parent" />
+                <CalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:layout_editor_absoluteX="-16dp" />
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/del_Btn"
-        android:layout_width="176dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="삭제"
-        android:visibility="invisible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/cha_Btn"
-        app:layout_constraintEnd_toEndOf="@+id/save_Btn" />
+            <TextView
+                android:id="@+id/todayDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/calenderLayout" />
 
+            <ImageView
+                android:id="@+id/photoView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_margin="20dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/placeholder_image"
+                android:visibility="invisible"
+                android:clickable="true"
+                android:onClick="onPhotoViewClick"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/todayDate" />
+
+            <EditText
+                android:id="@+id/contextEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:ems="10"
+                android:hint="Please write what kind of fairy you were today!"
+                android:inputType="textMultiLine"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/photoView" />
+
+            <TextView
+                android:id="@+id/dailyContent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/photoView" />
+
+            <Button
+                android:id="@+id/saveBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="20dp"
+                android:text="SAVE"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contextEditText" />
+
+            <GridLayout
+                android:id="@+id/editAndRemoveGrid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contextEditText">
+
+                <Button
+                    android:id="@+id/editBtn"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="invisible"
+                    android:text="EDIT"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/saveBtn"
+                    app:layout_constraintEnd_toStartOf="@+id/delBtn"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <Button
+                    android:id="@+id/delBtn"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:visibility="invisible"
+                    android:text="REMOVE"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/editBtn"
+                    app:layout_constraintEnd_toStartOf="@+id/saveBtn" />
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
