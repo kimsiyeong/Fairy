@@ -86,12 +86,10 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //db 연결
                 try {
-                    //Toast.makeText(getApplicationContext(), "객체 연결전", Toast.LENGTH_SHORT).show();
                     DBHelper dbHelper = new DBHelper(getApplicationContext()); // 이 액티비티에서 객체 초기화
 
                     SQLiteDatabase sqlDB;
                     sqlDB = dbHelper.getWritableDatabase( );
-                    //Toast.makeText(getApplicationContext(), "db 연결", Toast.LENGTH_SHORT).show();
 
                     String name = nameSEditText.getText().toString(); // EditText에서 이름 가져오기
                     String id = idSEditText.getText().toString();
@@ -107,9 +105,6 @@ public class SignupActivity extends AppCompatActivity {
                     sqlDB.execSQL("INSERT INTO User (name, id, pw, birth, intro) VALUES (?, ?, ?, ?, ?)",
                             new String[]{ name, id, password, birth,
                                     "저는 하루의 일상을 기억하는 페어리입니다! \\n매일 다른 옷을 입으며 일상을 기록하고 있어요 :-)"});
-
-
-                    //Toast.makeText(getApplicationContext(), "sql문 실행", Toast.LENGTH_SHORT).show();
 
                     sqlDB.close( ); // 열려있는 DB개체 닫기
 

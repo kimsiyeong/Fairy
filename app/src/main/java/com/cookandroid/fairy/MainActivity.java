@@ -43,9 +43,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "아이디 또는 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
 
-                // 로그인 동작
-                //Toast.makeText(MainActivity.this, "ID: " + id + "\nPW: " + pw, Toast.LENGTH_SHORT).show(); // 입력 확인 테스트
-
             }
         });
 
