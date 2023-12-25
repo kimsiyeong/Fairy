@@ -197,6 +197,8 @@ public void onClick(View view){
             editBtn.setVisibility(View.INVISIBLE);
             delBtn.setVisibility(View.INVISIBLE);
             removeDiary(readDay);
+            // 이미지 초기화
+            photoView.setImageResource(R.drawable.placeholder_image);
             }
         });
         if(dailyContent.getText()==null){
