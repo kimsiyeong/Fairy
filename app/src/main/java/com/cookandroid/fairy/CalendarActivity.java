@@ -42,6 +42,9 @@ public class CalendarActivity extends AppCompatActivity {
     public DatePicker datePicker;
     public Button myPageBtn, notiBtn, saveBtn, editBtn, delBtn;
     public TextView todayDate, dailyContent;
+    LocalDateTime currentDateTime;
+    String dateTimeString;
+    private String imagePath;
 
     // photoView 클릭 이벤트
     public void onPhotoViewClick(View view) {
@@ -57,6 +60,7 @@ public class CalendarActivity extends AppCompatActivity {
                     Intent data = result.getData();
                     if (data != null) {
                         Uri selectedImageUri = data.getData();
+                        imagePath = selectedImageUri.getPath();
                         // 선택한 이미지 처리
                         photoView.setImageURI(selectedImageUri);
                     }
@@ -133,6 +137,50 @@ public class CalendarActivity extends AppCompatActivity {
 
                 // SpannableString에 Span 적용
                 //spannableString.setSpan(colorSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                //db 연결
+                // DB에 데이터 저장
+                try {
+                    DBHelper dbHelper = new DBHelper(getApplicationContext()); // 이 액티비티에서 객체 초기화
+
+                    SQLiteDatabase sqlDB;
+                    sqlDB = dbHelper.getWritableDatabase( );
+                    Log.i("접근 db", sqlDB.toString());
+
+                    LocalDateTime currentDateTime = null;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        currentDateTime = LocalDateTime.now();
+                    }
+
+                    if (currentDateTime != null)
+                        dateTimeString = currentDateTime.toString();
+                    else
+                        Toast.makeText(CalendarActivity.this, "null", Toast.LENGTH_SHORT).show();
+
+
+                    // 사진 정보 저장
+                    sqlDB.execSQL("INSERT INTO Photo (calendarDate, photoPath, updateDate) VALUES (?, ?, ?)",
+                            new String[]{todayDate.getText().toString(), imagePath, dateTimeString});
+
+                    // 글 저장
+                    sqlDB.execSQL("INSERT INTO Post (calendarDate, content, updateDate) VALUES (?, ?, ?)",
+                            new String[]{todayDate.getText().toString(), contextEditText.getText().toString(), dateTimeString});
+
+
+                    sqlDB.close( ); // 열려있는 DB개체 닫기
+
+                    Intent returnIntent = new Intent();
+                    setResult(Activity.RESULT_OK, returnIntent);
+                    finish();
+
+                } catch (SQLException e) {
+                    Toast.makeText(getApplicationContext(), "sql문 오류", Toast.LENGTH_SHORT).show();
+                    Log.e("SQL_ERROR", "SQL Exception: " + e.getMessage());
+                }
+                catch(Exception e) {
+                    Toast.makeText(getApplicationContext(), "db 연결오류", Toast.LENGTH_SHORT).show();
+                    Log.e("ERROR", "Exception: " + e.getMessage());
+                }
 
                 // TextView에 설정
                 dailyContent.setText(spannableString);
