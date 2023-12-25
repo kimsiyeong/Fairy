@@ -21,7 +21,7 @@ public class MyPageActivity extends AppCompatActivity {
         profileImageView.setImageResource(R.drawable.profile);
 
         // 이름과 이메일 설정
-        nameTextView.setText("페어리");
+        nameTextView.setText("패어리");
         emailTextView.setText("fairy@naver.com");
 
         profileImageView.setOnClickListener(view -> {

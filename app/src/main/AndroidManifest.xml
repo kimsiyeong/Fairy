@@ -33,6 +33,8 @@
                 android:value="" />
         </activity>
         <activity android:name=".SignupActivity" />
+        <activity android:name=".CalendarActivity"/>
+
     </application>
 
 </manifest>

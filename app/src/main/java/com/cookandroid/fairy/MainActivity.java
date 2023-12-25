@@ -38,7 +38,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if (userExists) {
                     Toast.makeText(MainActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
-                    // 로그인 성공 시 다음 화면으로 이동하는 코드를 추가할 수 있습니다.
+                    // 로그인 성공 시 activity_calendar로 이동
+                    Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
+                    startActivity(intent);
+                    finish(); // 현재 액티비티를 종료하여 뒤로가기 버튼을 눌렀을 때 다시 로그인 화면으로 돌아가지 않도록 합니다.
                 } else {
                     Toast.makeText(MainActivity.this, "아이디 또는 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                 }

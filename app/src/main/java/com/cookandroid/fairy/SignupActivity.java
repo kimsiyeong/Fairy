@@ -104,7 +104,7 @@ public class SignupActivity extends AppCompatActivity {
 
                     sqlDB.execSQL("INSERT INTO User (name, id, pw, birth, intro) VALUES (?, ?, ?, ?, ?)",
                             new String[]{ name, id, password, birth,
-                                    "저는 하루의 일상을 기억하는 페어리입니다! \\n매일 다른 옷을 입으며 일상을 기록하고 있어요 :-)"});
+                                    "저는 하루의 일상을 기억하는 패어리입니다! \\n매일 다른 옷을 입으며 일상을 기록하고 있어요 :-)"});
 
                     sqlDB.close( ); // 열려있는 DB개체 닫기
 
