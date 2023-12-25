@@ -1,25 +1,19 @@
-package com.cookandroid.fairy_practice;
+package com.cookandroid.fairy;
+
 
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,13 +25,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-public class MainActivity extends AppCompatActivity {
+public class CalendarActivity extends AppCompatActivity {
     public ScrollView pageScroll;
     public GridLayout headGrid, editAndRemoveGrid;
     public LinearLayout allPage, calenderLayout;
@@ -49,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public DatePicker datePicker;
     public Button myPageBtn, notiBtn, saveBtn, editBtn, delBtn;
     public TextView todayDate, dailyContent;
+
     // photoView 클릭 이벤트 처리
     public void onPhotoViewClick(View view) {
         // 이미지 선택 기능 추가
@@ -70,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             });
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_calendar);
         pageScroll = findViewById(R.id.pageScroll);
         allPage = findViewById(R.id.allPage);
         headGrid = findViewById(R.id.headGrid);
@@ -88,13 +82,14 @@ public class MainActivity extends AppCompatActivity {
         editBtn = findViewById(R.id.editBtn);
         delBtn = findViewById(R.id.delBtn);
 
-        //왼쪽 상단 myPage에 갈 수 있는 버튼
+        //좌상단 myPage에 갈 수 있는 버튼
         myPageBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-
+                Intent intent = new Intent(CalendarActivity.this, MyPageActivity.class);
+                startActivity(intent);
             }
         });
-        //오른쪽 상단 알림창을 열 수 있는 버튼
+        //우상단 알림창을 열 수 있는 버튼
         notiBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 int colorRes = R.color.fairy;
 
                 // 리소스에서 실제 색상 값으로 변환
-                int fairyColor = ContextCompat.getColor(MainActivity.this, colorRes);
+                int fairyColor = ContextCompat.getColor(CalendarActivity.this, colorRes);
 
                 // 밑줄과 색상을 설정하는 Span 생성
                 ForegroundColorSpan colorSpan = new ForegroundColorSpan(fairyColor); // 색상을 원하는 색상으로 변경

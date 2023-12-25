@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.cookandroid.fairy_practice"
+    namespace = "com.cookandroid.fairy"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.cookandroid.fairy_practice"
+        applicationId = "com.cookandroid.fairy"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
