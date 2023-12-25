@@ -1,4 +1,5 @@
-package com.cookandroid.fairy_practice;
+package com.cookandroid.fairy;
+
 
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.activity.result.ActivityResultLauncher;
@@ -41,7 +42,8 @@ public class CalendarActivity extends AppCompatActivity {
     public DatePicker datePicker;
     public Button myPageBtn, notiBtn, saveBtn, editBtn, delBtn;
     public TextView todayDate, dailyContent;
-    // photoView 클릭 이벤트 처리
+
+    // photoView 클릭 이벤트
     public void onPhotoViewClick(View view) {
         // 이미지 선택 기능 추가
         Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -51,11 +53,11 @@ public class CalendarActivity extends AppCompatActivity {
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == RESULT_OK) {
-                    // 이미지를 선택한 경우 처리
+                    // 이미지 선택
                     Intent data = result.getData();
                     if (data != null) {
                         Uri selectedImageUri = data.getData();
-                        // 선택한 이미지에 대한 처리 (예: 이미지뷰에 설정)
+                        // 선택한 이미지 처리
                         photoView.setImageURI(selectedImageUri);
                     }
                 }
@@ -80,13 +82,14 @@ public class CalendarActivity extends AppCompatActivity {
         editBtn = findViewById(R.id.editBtn);
         delBtn = findViewById(R.id.delBtn);
 
-        //왼쪽 상단 myPage에 갈 수 있는 버튼
+        //좌상단 myPage에 갈 수 있는 버튼
         myPageBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-
+                Intent intent = new Intent(CalendarActivity.this, MyPageActivity.class);
+                startActivity(intent);
             }
         });
-        //오른쪽 상단 알림창을 열 수 있는 버튼
+        //우상단 알림창을 열 수 있는 버튼
         notiBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,17 +170,16 @@ public class CalendarActivity extends AppCompatActivity {
         delBtn.setVisibility(View.VISIBLE);
 
         editBtn.setOnClickListener(new View.OnClickListener(){
-@Override
-public void onClick(View view){
-        contextEditText.setVisibility(View.VISIBLE);
-        dailyContent.setVisibility(View.INVISIBLE);
-        contextEditText.setText(str);
-
-        saveBtn.setVisibility(View.VISIBLE);
-        editBtn.setVisibility(View.INVISIBLE);
-        delBtn.setVisibility(View.INVISIBLE);
-        dailyContent.setText(contextEditText.getText());
-        }
+            @Override
+            public void onClick(View view){
+            contextEditText.setVisibility(View.VISIBLE);
+            dailyContent.setVisibility(View.INVISIBLE);
+            contextEditText.setText(str);
+            saveBtn.setVisibility(View.VISIBLE);
+            editBtn.setVisibility(View.INVISIBLE);
+            delBtn.setVisibility(View.INVISIBLE);
+            dailyContent.setText(contextEditText.getText());
+            }
         });
         delBtn.setOnClickListener(new View.OnClickListener(){
             @Override
