@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cookandroid.fairy"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fairy"
         tools:targetApi="31">
+
+<!--        MyPage-->
         <activity
             android:name=".MyPageActivity"
             android:exported="false">
@@ -19,6 +24,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+<!--        MainPage-->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -32,8 +38,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        
-        <!--        calendarPage-->
+<!--        calendarPage-->
         <activity
             android:name=".CalendarActivity"
             android:exported="true">
@@ -43,10 +48,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
-    
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".CalendarActivity"/>
+        <activity android:name=".SignupActivity"/>
 
     </application>
 
